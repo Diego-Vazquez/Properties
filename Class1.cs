@@ -36,8 +36,6 @@ namespace FileProperties
             
         }
 
-        public Properties(){}
-
         public void SetPropertie(string propertie, string value)
         {
 
@@ -108,65 +106,6 @@ namespace FileProperties
             File.WriteAllText(this.file, string.Empty);
         }
 
-        public string CreateFile(string path)
-        {
-            int idexception = 0;
-            try
-            {
-                if (!File.Exists(path))
-                {
-                    if (Path.GetExtension(path).Equals(".properties"))
-                    {
-                        File.Create(path);
-                        this.file = path;
-                    }
-                    else
-                    {
-                        idexception = 2;
-                        throw new Exception("Extension file must be \".properties\"");
-                    }
-
-                }
-                else
-                {
-                    idexception = 1;
-                    throw new Exception("IOException source: the file already exists");
-                }
-
-            }
-            catch (IOException e)
-            {
-                throw e;
-            }
-            catch (Exception b)
-            {
-                switch (idexception)
-                {
-                    case 1: throw b;
-                    case 2: throw b;
-                }
-            }
-            return path;
-        }
-
-        public void UseOtherPropertiesFile(string path)
-        {
-            try
-            {
-                if (Path.GetExtension(path).Equals(".properties"))
-                {
-                    this.file = path;
-                }
-                else
-                {
-                    throw new Exception("Exception file must be \".properties\"");
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
 
         private int countchars(string string_, char character)
         {
